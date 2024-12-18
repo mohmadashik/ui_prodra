@@ -1,71 +1,187 @@
-# Getting Started with Create React App
+Here are two sample `README.md` files for your project. One is for the **backend server** (`server_prodra`), and the other is for the **frontend UI** (`ui_prodra`).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 1. `README.md` for **server_prodra** (Backend)
 
-## Available Scripts
+```markdown
+# Prodra Backend
 
-In the project directory, you can run:
+This is the backend of the Prodra application, built with Django and Django REST Framework. It handles user authentication, activity tracking, and communication with the frontend.
 
-### `npm start`
+## Requirements
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Python 3.8.10
+- MySQL (or another database of your choice)
+- Docker (optional, for containerization)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup
 
-### `npm test`
+### 1. Clone the repository
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/your-username/prodra_backend.git
+cd prodra_backend
+```
 
-### `npm run build`
+### 2. Create a virtual environment
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows use venv\Scripts\activate
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. Install dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+pip install -r requirements.txt
+```
 
-### `npm run eject`
+### 4. Set up the database
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Make sure MySQL (or your preferred database) is installed and running. Create a database for the project.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+mysql -u root -p
+CREATE DATABASE prodra_db;
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+In `prodra_backend/settings.py`, configure your database connection settings:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'prodra_db',
+        'USER': 'root',
+        'PASSWORD': 'your_password',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+```
 
-## Learn More
+### 5. Run migrations
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 6. Create a superuser
 
-### Code Splitting
+```bash
+python manage.py createsuperuser
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 7. Run the server
 
-### Analyzing the Bundle Size
+```bash
+python manage.py runserver
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The backend should now be running on `http://localhost:8000`.
 
-### Making a Progressive Web App
+## Docker Setup (Optional)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+If you want to run the backend with Docker, follow these steps:
 
-### Advanced Configuration
+1. Build the Docker containers:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+docker-compose up --build
+```
 
-### Deployment
+2. Access the backend at `http://localhost:8000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## API Endpoints
 
-### `npm run build` fails to minify
+- `GET /api/activities/` - List all activities
+- `POST /api/activities/` - Create a new activity
+- `GET /api/activities/{id}/` - Get details of a specific activity
+- `PUT /api/activities/{id}/` - Update an activity
+- `DELETE /api/activities/{id}/` - Delete an activity
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# ui_prodra
+## License
+
+MIT License. See LICENSE for more details.
+```
+
+---
+
+### 2. `README.md` for **ui_prodra** (Frontend)
+
+```markdown
+# Prodra Frontend
+
+This is the frontend of the Prodra application, built with React. It interacts with the backend to display and manage user activities.
+
+## Requirements
+
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+
+## Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/prodra_frontend.git
+cd prodra_frontend
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure API URL
+
+In `src/utils/api.js`, set the API base URL to the backend URL:
+
+```javascript
+const API_URL = 'http://localhost:8000/api/';
+```
+
+### 4. Run the development server
+
+```bash
+npm start
+```
+
+The frontend should now be running on `http://localhost:3000`.
+
+## Docker Setup (Optional)
+
+If you want to run the frontend with Docker, follow these steps:
+
+1. Build the Docker container:
+
+```bash
+docker build -t prodra_frontend .
+```
+
+2. Run the container:
+
+```bash
+docker run -p 3000:3000 prodra_frontend
+```
+
+3. Access the frontend at `http://localhost:3000`.
+
+## Features
+
+- Display list of activities
+- Add new activities (distance, time, etc.)
+- View details of specific activities
+
+## License
+
+MIT License. See LICENSE for more details.
+```
+
+---
+
+### Additional Notes:
+- Replace `https://github.com/your-username/prodra_backend.git` and `https://github.com/your-username/prodra_frontend.git` with the actual URLs of your repositories.
+- The `README.md` files provide the basic setup, instructions, and Docker configurations for both the backend and frontend.
+- You can expand these files with more specific instructions as the app grows (e.g., additional features, deployment steps, etc.).
