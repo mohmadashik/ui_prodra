@@ -18,7 +18,7 @@ This is the backend of the Prodra application, built with Django and Django REST
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/prodra_backend.git
+git clone https://github.com/mohmadashik/prodra_backend.git
 cd prodra_backend
 ```
 
@@ -32,7 +32,7 @@ source venv/bin/activate  # On Windows use venv\Scripts\activate
 ### 3. Install dependencies
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### 4. Set up the database
@@ -41,7 +41,7 @@ Make sure MySQL (or your preferred database) is installed and running. Create a 
 
 ```bash
 mysql -u root -p
-CREATE DATABASE prodra_db;
+CREATE DATABASE prodra;
 ```
 
 In `prodra_backend/settings.py`, configure your database connection settings:
@@ -50,7 +50,7 @@ In `prodra_backend/settings.py`, configure your database connection settings:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'prodra_db',
+        'NAME': 'prodra',
         'USER': 'root',
         'PASSWORD': 'your_password',
         'HOST': 'localhost',
@@ -62,20 +62,20 @@ DATABASES = {
 ### 5. Run migrations
 
 ```bash
-python manage.py makemigrations
-python manage.py migrate
+python3 manage.py makemigrations
+python3 manage.py migrate
 ```
 
 ### 6. Create a superuser
 
 ```bash
-python manage.py createsuperuser
+python3 manage.py createsuperuser
 ```
 
 ### 7. Run the server
 
 ```bash
-python manage.py runserver
+python3 manage.py runserver
 ```
 
 The backend should now be running on `http://localhost:8000`.
@@ -124,7 +124,7 @@ This is the frontend of the Prodra application, built with React. It interacts w
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/prodra_frontend.git
+git clone https://github.com/mohmadashik/prodra_frontend.git
 cd prodra_frontend
 ```
 
@@ -182,6 +182,6 @@ MIT License. See LICENSE for more details.
 ---
 
 ### Additional Notes:
-- Replace `https://github.com/your-username/prodra_backend.git` and `https://github.com/your-username/prodra_frontend.git` with the actual URLs of your repositories.
+- Replace `https://github.com/mohmadashik/prodra_backend.git` and `https://github.com/mohmadashik/prodra_frontend.git` with the actual URLs of your repositories.
 - The `README.md` files provide the basic setup, instructions, and Docker configurations for both the backend and frontend.
 - You can expand these files with more specific instructions as the app grows (e.g., additional features, deployment steps, etc.).
